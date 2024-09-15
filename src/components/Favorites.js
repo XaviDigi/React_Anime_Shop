@@ -38,12 +38,46 @@ const RemoveButton = styled.button`
   margin-top: 1rem;
 `;
 
+const Title = styled.h2`
+  font-size: 2.5rem;
+  color: #352e25;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 3px solid #e8e0cd;
+  padding-bottom: 0.5rem;
+`;
+
+const ViewDetailsButton = styled(Link)`
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #e8e0cd;
+  color: #352e25;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  border: 2px solid #352e25;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+  
+  &:hover {
+    background-color: #d6ceb7;
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
 const Favorites = () => {
   const { favorites, toggleFavorite } = useShop();
 
   return (
     <FavoritesWrapper>
-      <h2>Your Favorites</h2>
+      <Title>Your Favorites</Title>
       {favorites.length === 0 ? (
         <p>You haven't added any favorites yet.</p>
       ) : (
@@ -53,7 +87,7 @@ const Favorites = () => {
               <FavoriteImage src={item.image} alt={item.name} />
               <h3>{item.name}</h3>
               <p>${item.price}</p>
-              <Link to={`/product/${item.id}`}>View Details</Link>
+              <ViewDetailsButton to={`/product/${item.id}`}>View Details</ViewDetailsButton>
               <RemoveButton onClick={() => toggleFavorite(item)}>
                 <FaHeart /> Remove from Favorites
               </RemoveButton>

@@ -9,11 +9,27 @@ const CartWrapper = styled.div`
   margin: 0 auto;
 `;
 
+const Title = styled.h2`
+  font-size: 2.5rem;
+  color: #352e25;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 3px solid #e8e0cd;
+  padding-bottom: 0.5rem;
+`;
+
 const CartItem = styled.div`
   display: flex;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e8e0cd;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const ItemImage = styled.img`
@@ -30,6 +46,7 @@ const ItemInfo = styled.div`
 
 const ItemName = styled.h3`
   margin: 0 0 0.5rem 0;
+  color: #352e25;
 `;
 
 const ItemPrice = styled.p`
@@ -41,16 +58,22 @@ const ItemPrice = styled.p`
 const RemoveButton = styled.button`
   background-color: transparent;
   border: none;
-  color: #e91e63;
+  color: #821131;
   cursor: pointer;
   font-size: 1.2rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #b71c1c;
+  }
 `;
 
 const TotalPrice = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   text-align: right;
   margin-top: 1rem;
+  color: #352e25;
 `;
 
 const EmptyCart = styled.p`
@@ -60,9 +83,9 @@ const EmptyCart = styled.p`
 `;
 
 const CheckoutButton = styled.button`
-  background-color: #6a1b9a;
-  color: white;
-  border: none;
+  background-color: #e8e0cd;
+  color: #352e25;
+  border: 2px solid #352e25;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
   border-radius: 4px;
@@ -72,13 +95,21 @@ const CheckoutButton = styled.button`
   align-items: center;
   justify-content: center;
   width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   
   &:hover {
-    background-color: #8e24aa;
+    background-color: #d6ceb7;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 
   &:disabled {
     background-color: #ccc;
+    border-color: #999;
+    color: #666;
     cursor: not-allowed;
   }
 `;
@@ -144,7 +175,7 @@ const Cart = () => {
 
   return (
     <CartWrapper>
-      <h2>Your Cart</h2>
+      <Title>Your Cart</Title>
       {cart.length === 0 ? (
         <EmptyCart>Your cart is empty</EmptyCart>
       ) : (

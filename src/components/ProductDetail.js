@@ -42,7 +42,7 @@ const ProductDescription = styled.p`
 `;
 
 const Button = styled.button`
-  background-color: #6a1b9a;
+  background-color: #B99470;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -54,7 +54,7 @@ const Button = styled.button`
   margin-right: 1rem;
   
   &:hover {
-    background-color: #8e24aa;
+    background-color: #352e25;
   }
 `;
 

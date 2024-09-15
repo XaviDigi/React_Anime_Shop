@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
-  background-color: #f0f0f0;
+  background-color: #e8e0cd;
   padding: 1rem;
   text-align: center;
   margin-top: 2rem;
@@ -11,7 +11,7 @@ const FooterWrapper = styled.footer`
 const Footer = () => {
   return (
     <FooterWrapper>
-      <p>&copy; 2023 Anime Figurine Shop. All rights reserved.</p>
+      <p>&copy; 2024 Anime Figurine Shop. XaviDigi.</p>
     </FooterWrapper>
   );
 };

@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { React } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaShoppingCart, FaHome, FaHeart, FaSearch } from 'react-icons/fa';
+
 import { useShop } from '../context/ShopContext';
 
+// Beige-themed color palette
 const HeaderWrapper = styled.header`
-  background-color: #6a1b9a;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #e8e0cd; 
+  color: #352e25; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 `;
 
 const Banner = styled.div`
-  background-image: url('https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/03/assorted-anime-figurines.jpg');
+  background-image: url('https://cdn.mall.adeptmind.ai/https%3A%2F%2Fcdn.media.amplience.net%2Fs%2Fhottopic%2F20365651_hi_large.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 200px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,15 +26,22 @@ const Banner = styled.div`
   }
 `;
 
-const BannerText = styled.h1`
-  font-size: 3rem;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+const Title = styled.h1`
+  font-size: 3.5rem;
+  color: #e8e0cd;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+               0 0 10px rgba(232, 224, 205, 0.7);
   text-align: center;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
+  margin: 0;
+  padding: 1rem 2rem;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(45deg, #352e25, #6a1b9a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 `;
 
 const Nav = styled.nav`
@@ -52,45 +60,13 @@ const Nav = styled.nav`
 const Logo = styled(Link)`
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: #352e25; 
   text-decoration: none;
 
   @media (max-width: 768px) {
     margin-bottom: 1rem;
     text-align: center;
   }
-`;
-
-const SearchBar = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: white;
-  border-radius: 20px;
-  padding: 0.5rem;
-  margin: 0 1rem;
-  flex-grow: 1;
-  max-width: 400px;
-
-  @media (max-width: 768px) {
-    margin: 1rem 0;
-    max-width: none;
-  }
-`;
-
-const SearchInput = styled.input`
-  border: none;
-  background: none;
-  outline: none;
-  padding: 0.5rem;
-  font-size: 1rem;
-  flex-grow: 1;
-`;
-
-const SearchButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #6a1b9a;
 `;
 
 const NavLinks = styled.div`
@@ -104,25 +80,24 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  color: white;
+  color: #352e25; /* Dark brown text */
   text-decoration: none;
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
+  margin-left: 10px;
   border-radius: 20px;
-  transition: background-color 0.3s ease;
+  background-color: rgba(232, 224, 205, 0.7); /* Soft beige background */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(232, 224, 205, 1); /* Stronger beige on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
   }
 `;
 
-const IconWrapper = styled.span`
-  margin-right: 0.5rem;
-`;
-
 const CartCount = styled.span`
-  background-color: #e91e63;
+  background-color: #e91e63; /* Pink badge */
   color: white;
   border-radius: 50%;
   padding: 0.2rem 0.5rem;
@@ -138,46 +113,23 @@ const IconContainer = styled.div`
 
 const Header = () => {
   const { cart } = useShop();
-  const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      navigate(`/?search=${encodeURIComponent(searchTerm.trim())}`);
-    }
-  };
 
   return (
     <HeaderWrapper>
       <Banner>
-        <BannerText>Anime Figurine Shop</BannerText>
+       
       </Banner>
       <Nav>
         <Logo to="/">Anime Figurine Shop</Logo>
-        <SearchBar>
-          <SearchInput 
-            type="text" 
-            placeholder="Search figurines..." 
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <SearchButton onClick={handleSearch}>
-            <FaSearch />
-          </SearchButton>
-        </SearchBar>
         <NavLinks>
           <NavLink to="/">
-            <IconWrapper><FaHome /></IconWrapper>
             Home
           </NavLink>
           <NavLink to="/favorites">
-            <IconWrapper><FaHeart /></IconWrapper>
             Favorites
           </NavLink>
           <NavLink to="/cart">
             <IconContainer>
-              <IconWrapper><FaShoppingCart /></IconWrapper>
               {cart.length > 0 && <CartCount>{cart.length}</CartCount>}
             </IconContainer>
             Cart

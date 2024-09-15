@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaShoppingCart, FaEye } from 'react-icons/fa';
 import { useShop } from '../context/ShopContext';
 import { figurineData } from '../data/figurines';
 
@@ -62,32 +62,43 @@ const ProductPrice = styled.p`
   margin: 0.5rem 0;
 `;
 
-const ViewDetailsLink = styled(Link)`
-  display: inline-block;
-  margin: 0.5rem 0;
-  color: #6a1b9a;
-  text-decoration: none;
+const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+`;
+
+const IconButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #e8e0cd;
+  color: #352e25;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.2rem;
+  padding: 0;
 
   &:hover {
-    text-decoration: underline;
+    background-color: #d6ceb7;
   }
 `;
 
-const LikeButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: ${props => props.liked ? '#e91e63' : '#888'};
-  transition: color 0.3s ease;
-  
-  &:hover {
-    color: #e91e63;
-  }
+const ViewDetailsButton = styled(IconButton).attrs({ as: Link })``;
+
+const AddToCartButton = styled(IconButton)``;
+
+const LikeButton = styled(IconButton)`
+  color: ${props => props.liked ? '#e91e63' : '#352e25'};
 `;
 
 const ProductList = () => {
-  const { favorites, toggleFavorite } = useShop();
+  const { favorites, toggleFavorite, addToCart } = useShop();
 
   return (
     <ProductGrid>
@@ -98,15 +109,20 @@ const ProductList = () => {
             <ProductName>{product.name}</ProductName>
             <ProductPrice>${product.price.toFixed(2)}</ProductPrice>
           </div>
-          <div>
-            <ViewDetailsLink to={`/product/${product.id}`}>View Details</ViewDetailsLink>
+          <ButtonGroup>
+            <AddToCartButton onClick={() => addToCart(product)}>
+              <FaShoppingCart />
+            </AddToCartButton>
+            <ViewDetailsButton to={`/product/${product.id}`}>
+              <FaEye />
+            </ViewDetailsButton>
             <LikeButton 
               liked={favorites.some(item => item.id === product.id)} 
               onClick={() => toggleFavorite(product)}
             >
               {favorites.some(item => item.id === product.id) ? <FaHeart /> : <FaRegHeart />}
             </LikeButton>
-          </div>
+          </ButtonGroup>
         </ProductCard>
       ))}
     </ProductGrid>
