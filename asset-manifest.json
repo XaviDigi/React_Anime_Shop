@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/React_Anime_Shop/static/css/main.f8768276.css",
-    "main.js": "/React_Anime_Shop/static/js/main.88957b32.js",
-    "static/js/453.36a672e7.chunk.js": "/React_Anime_Shop/static/js/453.36a672e7.chunk.js",
-    "index.html": "/React_Anime_Shop/index.html",
-    "main.f8768276.css.map": "/React_Anime_Shop/static/css/main.f8768276.css.map",
-    "main.88957b32.js.map": "/React_Anime_Shop/static/js/main.88957b32.js.map",
-    "453.36a672e7.chunk.js.map": "/React_Anime_Shop/static/js/453.36a672e7.chunk.js.map"
+    "main.css": "/static/css/main.f8768276.css",
+    "main.js": "/static/js/main.c09434fb.js",
+    "static/js/453.36a672e7.chunk.js": "/static/js/453.36a672e7.chunk.js",
+    "index.html": "/index.html",
+    "main.f8768276.css.map": "/static/css/main.f8768276.css.map",
+    "main.c09434fb.js.map": "/static/js/main.c09434fb.js.map",
+    "453.36a672e7.chunk.js.map": "/static/js/453.36a672e7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f8768276.css",
-    "static/js/main.88957b32.js"
+    "static/js/main.c09434fb.js"
   ]
 }
